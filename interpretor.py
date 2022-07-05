@@ -1,3 +1,5 @@
+import sys
+
 def add():
     lst[index] += 1
 
@@ -6,52 +8,52 @@ def sub():
 
 def right():
     global index
-    if index == len(lst) - 1:
-        return
+    if index >= len(lst) - 1:
+        lst.append(0)
     index += 1
 
 def left():
     global index
-    if index == 0:
-        return
-    index -= 1
+    if index > 0:
+        index -= 1
 
 def dot():
     print(chr(lst[index]), end='')
 
 def coma():
-    inp = input()
+    code = input()
     try:
-        lst[index] = int(inp)
+        lst[index] = int(code)
     except:
-        lst[index] = ord(inp)
+        lst[index] = ord(code)
 
 if __name__ == '__main__':
-    lst = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    lst = [0]
     index = 0
     charPos = 0
 
-    while True:
-        inp = input()
-        while charPos < len(inp):
-            if inp[charPos] == '+':
-                add()
-            elif inp[charPos] == '-':
-                sub()
-            elif inp[charPos] == '>':
-                right()
-            elif inp[charPos] == '<':
-                left()
-            elif inp[charPos] == '.':
-                dot()
-            elif inp[charPos] == ',':
-                coma()
-            elif inp[charPos] == '[':
-                if lst[index] == 0:
-                    while inp[charPos] != ']':
-                        charPos += 1
-            elif inp[charPos] == ']':
-                if lst[index] != 0:
-                    while inp[charPos] != '[':
-                        charPos -= 1
-            charPos += 1
+    code = sys.argv[1]
+    while charPos < len(code):
+        if code[charPos] == '+':
+            add()
+        elif code[charPos] == '-':
+            sub()
+        elif code[charPos] == '>':
+            right()
+        elif code[charPos] == '<':
+            left()
+        elif code[charPos] == '.':
+            dot()
+        elif code[charPos] == ',':
+            coma()
+        elif code[charPos] == '[':
+            if lst[index] == 0:
+                while code[charPos] != ']':
+                    charPos += 1
+        elif code[charPos] == ']':
+            if lst[index] != 0:
+                while code[charPos] != '[':
+                    charPos -= 1
+        charPos += 1
+    
+    print()
