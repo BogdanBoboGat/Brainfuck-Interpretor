@@ -4,7 +4,8 @@ def add():
     lst[index] += 1
 
 def sub():
-    lst[index] -= 1
+    if lst[index] > 0:
+        lst[index] -= 1
 
 def right():
     global index
