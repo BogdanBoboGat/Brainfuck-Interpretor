@@ -1,32 +1,5 @@
 import sys
-
-def add():
-    lst[index] += 1
-
-def sub():
-    if lst[index] > 0:
-        lst[index] -= 1
-
-def right():
-    global index
-    if index >= len(lst) - 1:
-        lst.append(0)
-    index += 1
-
-def left():
-    global index
-    if index > 0:
-        index -= 1
-
-def dot():
-    print(chr(lst[index]), end='')
-
-def coma():
-    code = input()
-    try:
-        lst[index] = int(code)
-    except:
-        lst[index] = ord(code)
+from time import sleep
 
 if __name__ == '__main__':
     lst = [0]
@@ -34,27 +7,49 @@ if __name__ == '__main__':
     charPos = 0
 
     code = sys.argv[1]
+    
     while charPos < len(code):
+        
+        # use if you want to see how the algorithm works
+        # print(f'code[{charPos}] = {code[charPos]}')
+        # sleep(1)
+        
         if code[charPos] == '+':
-            add()
+            lst[index] += 1
+        
         elif code[charPos] == '-':
-            sub()
+            if lst[index] > 0:
+                lst[index] -= 1
+        
         elif code[charPos] == '>':
-            right()
+            if index >= len(lst) - 1:
+                lst.append(0)
+            index += 1
+        
         elif code[charPos] == '<':
-            left()
+            if index > 0:
+                index -= 1
+        
         elif code[charPos] == '.':
-            dot()
+            print(chr(lst[index]), end='')
+
         elif code[charPos] == ',':
-            coma()
+            inp = input()
+            try:
+                lst[index] = int(inp)
+            except:
+                lst[index] = ord(inp)
+
         elif code[charPos] == '[':
             if lst[index] == 0:
                 while code[charPos] != ']':
                     charPos += 1
+        
         elif code[charPos] == ']':
             if lst[index] != 0:
                 while code[charPos] != '[':
                     charPos -= 1
+        print(lst)
         charPos += 1
     
     print()
